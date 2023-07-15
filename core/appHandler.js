@@ -1,5 +1,5 @@
-var db = require('../models')
-var bCrypt = require('bcrypt')
+let db = require('../models')
+let bCrypt = require('bcrypt')
 const exec = require('child_process').exec;
 var mathjs = require('mathjs')
 var libxmljs = require("libxmljs");
@@ -37,7 +37,7 @@ module.exports.userSearch = function (req, res) {
 
 module.exports.ping = function (req, res) {
 	exec('ping -c 2 ' + req.body.address, function (err, stdout, stderr) {
-		output = stdout + stderr
+		let output = stdout + stderr
 		res.render('app/ping', {
 			output: output
 		})
@@ -232,7 +232,7 @@ module.exports.bulkProductsLegacy = function (req,res){
 
 module.exports.bulkProducts =  function(req, res) {
 	if (req.files.products && req.files.products.mimetype=='text/xml'){
-		var products = libxmljs.parseXmlString(req.files.products.data.toString('utf8'), {noent:true,noblanks:true})
+		var products = libxmljs.parseXmlString(req.files.products.data.toString('utf8'), {noblanks:true})
 		products.root().childNodes().forEach( product => {
 			var newProduct = new db.Product()
 			newProduct.name = product.childNodes()[0].text()
