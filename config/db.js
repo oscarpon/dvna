@@ -1,8 +1,8 @@
 module.exports = {
-  username: process.env.MYSQL_USER,
+  username: oponte,
   password: 1234566543,
-  database: process.env.MYSQL_DATABASE,
-  host: process.env.MYSQL_HOST || 'mysql-db',
+  database: postgres,
+  host: localhost || 'mysql-db',
   port: process.env.MYSQL_PORT || 3306,
   dialect: 'mysql'
 }
